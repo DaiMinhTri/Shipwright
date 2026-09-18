@@ -2,7 +2,7 @@ using BepInEx.Configuration;
 
 namespace ServerSync;
 
-internal abstract class OwnConfigEntryBase
+public abstract class OwnConfigEntryBase
 {
 	public object? LocalBaseValue;
 

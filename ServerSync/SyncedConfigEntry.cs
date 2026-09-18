@@ -2,7 +2,7 @@ using BepInEx.Configuration;
 
 namespace ServerSync;
 
-internal class SyncedConfigEntry<T> : OwnConfigEntryBase
+public class SyncedConfigEntry<T> : OwnConfigEntryBase
 {
 	public readonly ConfigEntry<T> SourceConfig;
 

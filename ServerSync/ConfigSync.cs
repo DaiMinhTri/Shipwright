@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace ServerSync;
 
-internal class ConfigSync
+public class ConfigSync
 {
 	private class SnatchCurrentlyHandlingRPC
 	{
