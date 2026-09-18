@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
@@ -151,6 +152,13 @@ public class ConfigSync
 	public bool ModRequired;
 	private OwnConfigEntryBase? lockedConfig;
 	private Action lockedConfigChanged = delegate { };
+	private bool? forceConfigLocking;
+
+	public bool IsLocked
+	{
+		get => (forceConfigLocking ?? lockedConfig != null && ((IConvertible)lockedConfig!.BaseConfig.BoxedValue).ToInt32(CultureInfo.InvariantCulture) != 0) && !lockExempt;
+		set => forceConfigLocking = value;
+	}
 
 	internal event Action<bool> SourceOfTruthChanged = delegate { };
 
