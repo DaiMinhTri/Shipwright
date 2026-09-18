@@ -1,6 +1,6 @@
 # Shipwright
 
-Maintained by DaiMinhTri (originally by RustyMods)
+A fork updated by DaiMinhTri (originally by RustyMods)
 
 Shipwright hammer lets users repair ships on the go without the need of a crafting station.
 
@@ -13,7 +13,7 @@ Scared those viking sailors might destroy your ship? Fear no more, for the shipw
 - Mouse3 to destroy
 - Configurable material cost (default is wood)
 - Configurable repair and destroy duration
-- Extra longship visuals can be enabled via configs
+- Extra longship visuals can be enabled via configs (Note: turning them on without Balrond's Shipyard installed will crash the game)
 
 ## Changelog
 ```
