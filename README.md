@@ -23,5 +23,6 @@ Scared those viking sailors might destroy your ship? Fear no more, for the shipw
 1.0.0 - Initial Release
 ```
 
-## Contact
-GitHub: https://github.com/DaiMinhTri/Shipwright
+## Support
+If you enjoy this mod and want to support me:
+[![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_btn_orange_sm.png)](https://buymeacoffee.com/daiminhtri)
