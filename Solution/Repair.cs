@@ -137,7 +137,7 @@ public static class Repair
 
         var transform = hoveringPiece.transform;
         if (ShipwrightPlugin._usePlaceEffects.Value is ShipwrightPlugin.Toggle.On) hoveringPiece.m_placeEffect.Create(transform.position, transform.rotation);
-        player.UseStamina(ShipwrightPlugin._staminaCost.Value, true);
+        player.UseStamina(ShipwrightPlugin._staminaCost.Value);
         var transform1 = player.transform;
         toolItem.m_shared.m_triggerEffect.Create(transform1.position, transform1.rotation);
         if (ShipwrightPlugin._useDurability.Value is ShipwrightPlugin.Toggle.Off) return;

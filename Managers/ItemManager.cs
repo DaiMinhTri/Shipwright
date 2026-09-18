@@ -1747,7 +1747,7 @@ public class Item
         }
     }
 
-    private static bool CheckItemIsUpgrade(InventoryGui gui) => gui.m_selectedRecipe.Value?.m_quality > 0;
+    private static bool CheckItemIsUpgrade(InventoryGui gui) => gui.m_selectedRecipe.ItemData?.m_quality > 0;
 
     internal static IEnumerable<CodeInstruction> Transpile_InventoryGui(IEnumerable<CodeInstruction> instructions)
     {
@@ -2491,7 +2491,21 @@ public static class PrefabManager
             RegisterStatusEffect(shared.m_setStatusEffect);
         }
 
-        __instance.UpdateItemHashes();
+        if (__instance.m_itemByHash != null)
+        {
+            foreach (GameObject prefab in __instance.m_items)
+            {
+                ItemDrop itemDrop = prefab.GetComponent<ItemDrop>();
+                if (itemDrop != null)
+                {
+                    int hash = itemDrop.m_itemData.m_shared.m_name.GetHashCode();
+                    if (!__instance.m_itemByHash.ContainsKey(hash))
+                    {
+                        __instance.m_itemByHash[hash] = prefab;
+                    }
+                }
+            }
+        }
     }
 
     [HarmonyPriority(Priority.VeryHigh)]
