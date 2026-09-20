@@ -9,7 +9,7 @@ using HarmonyLib;
 using ItemManager;
 using JetBrains.Annotations;
 using ServerSync;
-using Settlers.Managers;
+using Shipwright.Managers;
 using Shipwright.Solution;
 using CraftingTable = ItemManager.CraftingTable;
 
@@ -19,12 +19,11 @@ namespace Shipwright
     public class ShipwrightPlugin : BaseUnityPlugin
     {
         internal const string ModName = "Shipwright";
-        internal const string ModVersion = "1.1.0";
+        internal const string ModVersion = "1.1.1";
         internal const string Author = "DaiMinhTri";
         private const string ModGUID = Author + "." + ModName;
         private static readonly string ConfigFileName = ModGUID + ".cfg";
         private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
-        internal static string ConnectionError = "";
         private readonly Harmony _harmony = new(ModGUID);
         public static readonly ManualLogSource ShipwrightLogger = BepInEx.Logging.Logger.CreateLogSource(ModName);
         private static readonly ConfigSync ConfigSync = new(ModGUID) { DisplayName = ModName, CurrentVersion = ModVersion, MinimumRequiredVersion = ModVersion };

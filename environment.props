@@ -2,9 +2,9 @@
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <VALHEIM_INSTALL Condition="!Exists('$(VALHEIM_INSTALL)')">D:\SteamLibrary\steamapps\common\Valheim</VALHEIM_INSTALL>
-    <BEPINEX_PATH>$(AppData)\r2modmanPlus-local\Valheim\profiles\Test\BepInEx</BEPINEX_PATH>
+    <BEPINEX_PATH>$(AppData)\com.kesomannen.gale\valheim\profiles\test\BepInEx</BEPINEX_PATH>
     <VALHEIM_MANAGED>$(VALHEIM_INSTALL)\valheim_Data\Managed</VALHEIM_MANAGED>
-    <r2ModManPath>$(AppData)\r2modmanPlus-local\Valheim\profiles</r2ModManPath>
-    <MOD_DEPLOYPATH>$(r2ModManPath)\Test\BepInEx\plugins</MOD_DEPLOYPATH>
+    <r2ModManPath>$(AppData)\com.kesomannen.gale\valheim\profiles</r2ModManPath>
+    <MOD_DEPLOYPATH>$(r2ModManPath)\test\BepInEx\plugins</MOD_DEPLOYPATH>
   </PropertyGroup>
 </Project>

@@ -22,12 +22,24 @@ public class ShipCustomize : MonoBehaviour
         var objects = transform.Find("ship/visual/Customize");
         if (objects == null) return;
         m_customize = objects.gameObject;
-        m_shipTentBeam = objects.Find("ShipTen2_beam").gameObject;
-        m_shipTent = objects.Find("ShipTen2 (1)").gameObject;
-        m_shipTentHolders1 = objects.Find("ShipTentHolders").gameObject;
-        m_shipTentHolders2 = objects.Find("ShipTentHolders (1)").gameObject;
-        m_traderLamp = objects.Find("TraderLamp").gameObject;
-        m_storage = objects.Find("storage").gameObject;
+        var tentBeam = objects.Find("ShipTen2_beam");
+        if (tentBeam == null) return;
+        m_shipTentBeam = tentBeam.gameObject;
+        var tent = objects.Find("ShipTen2 (1)");
+        if (tent == null) return;
+        m_shipTent = tent.gameObject;
+        var holders1 = objects.Find("ShipTentHolders");
+        if (holders1 == null) return;
+        m_shipTentHolders1 = holders1.gameObject;
+        var holders2 = objects.Find("ShipTentHolders (1)");
+        if (holders2 == null) return;
+        m_shipTentHolders2 = holders2.gameObject;
+        var lamp = objects.Find("TraderLamp");
+        if (lamp == null) return;
+        m_traderLamp = lamp.gameObject;
+        var storage = objects.Find("storage");
+        if (storage == null) return;
+        m_storage = storage.gameObject;
         foreach (Transform obj in m_storage.transform)
         {
             if (obj.name.StartsWith("Shield"))

@@ -10,7 +10,7 @@ using HarmonyLib;
 using JetBrains.Annotations;
 using YamlDotNet.Serialization;
 
-namespace Settlers.Managers;
+namespace Shipwright.Managers;
 
 [PublicAPI]
 public class Localizer
