@@ -12,8 +12,8 @@ public static class Repair
         return piece.m_name switch
         {
             "Karve" => (ShipwrightPlugin._karveMaterial.Value, ShipwrightPlugin._karveMaterialAmount.Value),
-            "Longship" => (ShipwrightPlugin._longshipMaterial.Value, ShipwrightPlugin._longshipMaterialAmount.Value),
-            "Drakkar" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
+            "VikingShip" => (ShipwrightPlugin._longshipMaterial.Value, ShipwrightPlugin._longshipMaterialAmount.Value),
+            "VikingShip_Ashlands" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
             _ => (ShipwrightPlugin._defaultMaterial.Value, ShipwrightPlugin._defaultMaterialAmount.Value),
         };
     }
