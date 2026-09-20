@@ -19,7 +19,7 @@ namespace Shipwright
     public class ShipwrightPlugin : BaseUnityPlugin
     {
         internal const string ModName = "Shipwright";
-        internal const string ModVersion = "1.1.1";
+        internal const string ModVersion = "1.1.2";
         internal const string Author = "DaiMinhTri";
         private const string ModGUID = Author + "." + ModName;
         private static readonly string ConfigFileName = ModGUID + ".cfg";
@@ -30,8 +30,8 @@ namespace Shipwright
         public enum Toggle { On = 1, Off = 0 }
 
         private static ConfigEntry<Toggle> _serverConfigLocked = null!;
-        public static ConfigEntry<int> _materialAmount = null!;
-        public static ConfigEntry<string> _material = null!;
+        public static ConfigEntry<string> _defaultMaterial = null!;
+        public static ConfigEntry<int> _defaultMaterialAmount = null!;
         public static ConfigEntry<float> _repairAmount = null!;
         public static ConfigEntry<float> _staminaCost = null!;
         public static ConfigEntry<float> _repairDuration = null!;
@@ -39,7 +39,14 @@ namespace Shipwright
         public static ConfigEntry<Toggle> _canDeconstruct = null!;
         public static ConfigEntry<float> _deconstructDuration = null!;
         public static ConfigEntry<Toggle> _useDurability = null!;
-        
+
+        public static ConfigEntry<string> _karveMaterial = null!;
+        public static ConfigEntry<int> _karveMaterialAmount = null!;
+        public static ConfigEntry<string> _longshipMaterial = null!;
+        public static ConfigEntry<int> _longshipMaterialAmount = null!;
+        public static ConfigEntry<string> _drakkarMaterial = null!;
+        public static ConfigEntry<int> _drakkarMaterialAmount = null!;
+
         public static ConfigEntry<Toggle> _useShipCustomize = null!;
         public static ConfigEntry<Toggle> _useShipTent = null!;
         public static ConfigEntry<Toggle> _useTraderLamp = null!;
@@ -52,9 +59,9 @@ namespace Shipwright
         {
             _serverConfigLocked = config("1 - General", "Lock Configuration", Toggle.On, "If on, the configuration is locked and can be changed by server admins only.");
             _ = ConfigSync.AddLockingConfigEntry(_serverConfigLocked);
-            
-            _material = config("2 - Settings", "Material", "Wood", "Set the material requirements to repair while on water");
-            _materialAmount = config("2 - Settings", "Material Amount", 1, new ConfigDescription("Set the amount of material needed to repair ship, multiplied by ship health", new AcceptableValueRange<int>(0, 999)));
+
+            _defaultMaterial = config("2 - Settings", "Default Material", "Wood", "Fallback material for unknown/modded ship types");
+            _defaultMaterialAmount = config("2 - Settings", "Default Material Amount", 1, new ConfigDescription("Fallback material amount for unknown/modded ship types", new AcceptableValueRange<int>(0, 999)));
             _repairAmount = config("2 - Settings", "Repair Amount", 0.1f, new ConfigDescription("Set the health percentage amount for each repair", new AcceptableValueRange<float>(0f, 1f)));
             _staminaCost = config("2 - Settings", "Stamina Cost", 5f, new ConfigDescription("Set the amount of stamina needed to repair once", new AcceptableValueRange<float>(0f, 50f)));
             _repairDuration = config("2 - Settings", "Repair Duration", 1f, new ConfigDescription("Set the duration to load repair hammer, in seconds, multiplied by the quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
@@ -63,7 +70,16 @@ namespace Shipwright
             _deconstructDuration = config("2 - Settings", "Deconstruct Duration", 10f, new ConfigDescription("Set the duration to deconstruct, in seconds, multiplied by quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
             _useDurability = config("2 - Settings", "Use Durability", Toggle.On, "If on, each use of tool uses durability");
 
-            _useShipCustomize = config("3 - Longship", "Extra Visuals", Toggle.Off,
+            _karveMaterial = config("3 - Karve", "Material", "Wood", "Material required to repair Karve");
+            _karveMaterialAmount = config("3 - Karve", "Material Amount", 1, new ConfigDescription("Material amount needed to repair Karve", new AcceptableValueRange<int>(0, 999)));
+
+            _longshipMaterial = config("4 - Longship", "Material", "FineWood", "Material required to repair Longship");
+            _longshipMaterialAmount = config("4 - Longship", "Material Amount", 2, new ConfigDescription("Material amount needed to repair Longship", new AcceptableValueRange<int>(0, 999)));
+
+            _drakkarMaterial = config("5 - Drakkar", "Material", "YggdrasilWood", "Material required to repair Drakkar");
+            _drakkarMaterialAmount = config("5 - Drakkar", "Material Amount", 3, new ConfigDescription("Material amount needed to repair Drakkar", new AcceptableValueRange<int>(0, 999)));
+
+            _useShipCustomize = config("6 - Longship Visuals", "Extra Visuals", Toggle.Off,
                 "If on, viking ship will have extra visuals enabled");
             _useShipCustomize.SettingChanged += (sender, args) =>
             {
@@ -73,7 +89,7 @@ namespace Shipwright
                 }
             };
 
-            _useShipTent = config("3 - Longship", "Use Tent", Toggle.Off, "If on, tent is enabled");
+            _useShipTent = config("6 - Longship Visuals", "Use Tent", Toggle.Off, "If on, tent is enabled");
             _useShipTent.SettingChanged += (sender, args) =>
             {
                 foreach (var ship in ShipCustomize.m_instances)
@@ -81,7 +97,8 @@ namespace Shipwright
                     ship.SetTent(_useShipTent.Value is Toggle.On);
                 }
             };
-            _useTraderLamp = config("3 - Longship", "Use Lamp", Toggle.Off, "If on, lamp is enabled");
+
+            _useTraderLamp = config("6 - Longship Visuals", "Use Lamp", Toggle.Off, "If on, lamp is enabled");
             _useTraderLamp.SettingChanged += (sender, args) =>
             {
                 foreach (var ship in ShipCustomize.m_instances)
@@ -89,7 +106,8 @@ namespace Shipwright
                     ship.SetLamp(_useTraderLamp.Value is Toggle.On);
                 }
             };
-            _useStorage = config("3 - Longship", "Use Storage", Toggle.Off, "If on, storage is enabled");
+
+            _useStorage = config("6 - Longship Visuals", "Use Storage", Toggle.Off, "If on, storage is enabled");
             _useStorage.SettingChanged += (sender, args) =>
             {
                 foreach (var ship in ShipCustomize.m_instances)
@@ -97,7 +115,8 @@ namespace Shipwright
                     ship.SetStorage(_useStorage.Value is Toggle.On);
                 }
             };
-            _useShields = config("3 - Longship", "Use Shields", Toggle.Off, "If on, shields are enabled");
+
+            _useShields = config("6 - Longship Visuals", "Use Shields", Toggle.Off, "If on, shields are enabled");
             _useShields.SettingChanged += (sender, args) =>
             {
                 foreach (var ship in ShipCustomize.m_instances)
@@ -181,7 +200,6 @@ namespace Shipwright
                     (synchronizedSetting ? " [Synced with Server]" : " [Not Synced with Server]"),
                     description.AcceptableValues, description.Tags);
             ConfigEntry<T> configEntry = Config.Bind(group, name, value, extendedDescription);
-            //var configEntry = Config.Bind(group, name, value, description);
 
             SyncedConfigEntry<T> syncedConfigEntry = ConfigSync.AddConfigEntry(configEntry);
             syncedConfigEntry.SynchronizedConfig = synchronizedSetting;

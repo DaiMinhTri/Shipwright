@@ -1,7 +1,7 @@
 {
     "name": "Shipwright",
     "description": "Repair and deconstruct ships on the go without a crafting station. Use the Shipwright Hammer to repair, destroy, and customize your vessels.",
-    "version_number": "1.1.1",
+    "version_number": "1.1.2",
     "website_url": "https://github.com/DaiMinhTri/Shipwright",
     "dependencies": [
         "denikson-BepInExPack_Valheim-5.4.2350"

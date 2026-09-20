@@ -31,8 +31,8 @@ A configuration file is generated at `BepInEx/config/DaiMinhTri.Shipwright.cfg` 
 | Section | Setting | Default | Description |
 |---------|---------|---------|-------------|
 | General | Lock Configuration | On | Lock config to server admins only |
-| Settings | Material | Wood | Material required to repair on water |
-| Settings | Material Amount | 1 | Material amount multiplied by ship health |
+| Settings | Default Material | Wood | Fallback material for unknown/modded ship types |
+| Settings | Default Material Amount | 1 | Fallback material amount for unknown/modded ship types |
 | Settings | Repair Amount | 0.1 | Health percentage per repair |
 | Settings | Stamina Cost | 5 | Stamina needed per repair |
 | Settings | Repair Duration | 1 | Duration in seconds, multiplied by tool quality |
@@ -40,11 +40,17 @@ A configuration file is generated at `BepInEx/config/DaiMinhTri.Shipwright.cfg` 
 | Settings | Can Deconstruct | Off | Allow deconstructing with secondary attack |
 | Settings | Deconstruct Duration | 10 | Duration in seconds, multiplied by tool quality |
 | Settings | Use Durability | On | Tool uses durability per use |
-| Longship | Extra Visuals | Off | Enable extra ship visuals (crashes without Balrond Shipyard) |
-| Longship | Use Tent | Off | Enable tent on longship |
-| Longship | Use Lamp | Off | Enable trader lamp on longship |
-| Longship | Use Storage | Off | Enable storage on longship |
-| Longship | Use Shields | Off | Enable shields on longship |
+| Karve | Material | Wood | Material required to repair Karve |
+| Karve | Material Amount | 1 | Material amount needed to repair Karve |
+| Longship | Material | FineWood | Material required to repair Longship |
+| Longship | Material Amount | 2 | Material amount needed to repair Longship |
+| Drakkar | Material | YggdrasilWood | Material required to repair Drakkar |
+| Drakkar | Material Amount | 3 | Material amount needed to repair Drakkar |
+| Longship Visuals | Extra Visuals | Off | Enable extra ship visuals (crashes without Balrond Shipyard) |
+| Longship Visuals | Use Tent | Off | Enable tent on longship |
+| Longship Visuals | Use Lamp | Off | Enable trader lamp on longship |
+| Longship Visuals | Use Storage | Off | Enable storage on longship |
+| Longship Visuals | Use Shields | Off | Enable shields on longship |
 
 ## Compatibility
 
@@ -65,6 +71,11 @@ A configuration file is generated at `BepInEx/config/DaiMinhTri.Shipwright.cfg` 
 If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://img.shields.io/badge/Buy%20Me%20A%20Coffee-daiminhtri-yellow)](https://buymeacoffee.com/daiminhtri)
 
 ## Changelog
+
+### 1.1.2
+- Added per-ship material requirements: Karve uses Wood, Longship uses Fine Wood, Drakkar uses Yggdrasil Wood
+- Raft can no longer be repaired or deconstructed
+- Added Default Material / Default Material Amount for unknown/modded ship types
 
 ### 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)

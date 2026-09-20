@@ -1,6 +1,11 @@
 # Changelog
 
 
+## 1.1.2
+- Added per-ship material requirements: Karve uses Wood, Longship uses Fine Wood, Drakkar uses Yggdrasil Wood
+- Raft can no longer be repaired or deconstructed
+- Added Default Material / Default Material Amount for unknown/modded ship types
+
 ## 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)
 - Removed duplicate VersionHandshake (conflicted with ConfigSync's VersionCheck)
