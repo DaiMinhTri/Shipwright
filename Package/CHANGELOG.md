@@ -10,6 +10,7 @@
 - New config file name
 - All slider configs changed to integer values
 - Can Deconstruct default changed to On
+- Deconstruct Duration default changed from 10 to 5
 
 ## 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)

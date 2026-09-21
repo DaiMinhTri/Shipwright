@@ -38,7 +38,7 @@ A configuration file is generated at `BepInEx/config/DMT.Shipwright.cfg` after t
 | Settings | Repair Duration | 1 | Duration in seconds, multiplied by tool quality |
 | Settings | Repair Effects | On | Trigger effects on repair |
 | Settings | Can Deconstruct | On | Allow deconstructing with secondary attack |
-| Settings | Deconstruct Duration | 10 | Duration in seconds, multiplied by tool quality |
+| Settings | Deconstruct Duration | 5 | Duration in seconds, multiplied by tool quality |
 | Settings | Use Durability | On | Tool uses durability per use |
 | Settings | Deconstruct Return Amount | 100 | Percentage of resources returned when deconstructing (0-100, default 100%) |
 | Karve | Material | Wood | Material required to repair Karve |
@@ -82,6 +82,7 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 - New config file name
 - All slider configs changed to integer values
 - Can Deconstruct default changed to On
+- Deconstruct Duration default changed from 10 to 5
 
 ### 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)
