@@ -20,7 +20,7 @@ namespace Shipwright
     {
         internal const string ModName = "Shipwright";
         internal const string ModVersion = "1.1.2";
-        internal const string Author = "DaiMinhTri";
+        internal const string Author = "DMT";
         private const string ModGUID = Author + "." + ModName;
         private static readonly string ConfigFileName = ModGUID + ".cfg";
         private static readonly string ConfigFileFullPath = Paths.ConfigPath + Path.DirectorySeparatorChar + ConfigFileName;
@@ -39,7 +39,7 @@ namespace Shipwright
         public static ConfigEntry<Toggle> _canDeconstruct = null!;
         public static ConfigEntry<float> _deconstructDuration = null!;
         public static ConfigEntry<Toggle> _useDurability = null!;
-        public static ConfigEntry<float> _deconstructReturnAmount = null!;
+        public static ConfigEntry<int> _deconstructReturnAmount = null!;
 
         public static ConfigEntry<string> _karveMaterial = null!;
         public static ConfigEntry<int> _karveMaterialAmount = null!;
@@ -70,7 +70,7 @@ namespace Shipwright
             _canDeconstruct = config("2 - Settings", "Can Deconstruct", Toggle.Off, "If on, using secondary attack, player can deconstruct");
             _deconstructDuration = config("2 - Settings", "Deconstruct Duration", 10f, new ConfigDescription("Set the duration to deconstruct, in seconds, multiplied by quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
             _useDurability = config("2 - Settings", "Use Durability", Toggle.On, "If on, each use of tool uses durability");
-            _deconstructReturnAmount = config("2 - Settings", "Deconstruct Return Amount", 1f, new ConfigDescription("Percentage of resources returned when deconstructing a ship (0 = none, 1 = full refund)", new AcceptableValueRange<float>(0f, 1f)));
+            _deconstructReturnAmount = config("2 - Settings", "Deconstruct Return Amount", 100, new ConfigDescription("Percentage of resources returned when deconstructing a ship (0 = none, 100 = full refund)", new AcceptableValueRange<int>(0, 100)));
 
             _karveMaterial = config("3 - Karve", "Material", "Wood", "Material required to repair Karve");
             _karveMaterialAmount = config("3 - Karve", "Material Amount", 1, new ConfigDescription("Material amount needed to repair Karve", new AcceptableValueRange<int>(0, 999)));
