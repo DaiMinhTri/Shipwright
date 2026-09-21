@@ -80,7 +80,6 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 - Added Deconstruct Return Amount config (0-100% slider, default 100%)
 - Deconstructed ship resources now go to player inventory
 - New config file name
-- All slider configs changed to integer values
 - Can Deconstruct default changed to On
 - Deconstruct Duration default changed from 10 to 5
 
