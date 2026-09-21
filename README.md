@@ -56,7 +56,7 @@ A configuration file is generated at `BepInEx/config/DMT.Shipwright.cfg` after t
 ## Compatibility
 
 ### Ship Mods
-- **Balrond's Shipyard** - Required if you enable Extra Visuals. The mod detects it automatically and disables extra visuals when installed.
+- **Balrond's Shipyard** - Required if you enable Extra Visuals. The mod detects it automatically and disables extra visuals when installed. Not yet tested with the latest version of Shipwright.
 
 ## Installation
 
