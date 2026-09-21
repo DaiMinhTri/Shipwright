@@ -13,7 +13,7 @@ public static class Repair
         {
             "Karve" => (ShipwrightPlugin._karveMaterial.Value, ShipwrightPlugin._karveMaterialAmount.Value),
             "VikingShip" => (ShipwrightPlugin._longshipMaterial.Value, ShipwrightPlugin._longshipMaterialAmount.Value),
-            "VikingShip_Ashlands" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
+            "$piece_boat_drakkar" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
             _ => (ShipwrightPlugin._defaultMaterial.Value, ShipwrightPlugin._defaultMaterialAmount.Value),
         };
     }
