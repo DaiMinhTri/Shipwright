@@ -40,6 +40,7 @@ A configuration file is generated at `BepInEx/config/DaiMinhTri.Shipwright.cfg` 
 | Settings | Can Deconstruct | Off | Allow deconstructing with secondary attack |
 | Settings | Deconstruct Duration | 10 | Duration in seconds, multiplied by tool quality |
 | Settings | Use Durability | On | Tool uses durability per use |
+| Settings | Deconstruct Return Amount | 1 | Percentage of resources returned when deconstructing (0-1) |
 | Karve | Material | Wood | Material required to repair Karve |
 | Karve | Material Amount | 1 | Material amount needed to repair Karve |
 | Longship | Material | FineWood | Material required to repair Longship |
@@ -76,6 +77,8 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 - Added per-ship material requirements: Karve uses Wood, Longship uses Fine Wood, Drakkar uses Yggdrasil Wood
 - Raft can no longer be repaired or deconstructed
 - Added Default Material / Default Material Amount for unknown/modded ship types
+- Added Deconstruct Return Amount config (0-100% slider, default 100%)
+- Deconstructed ship resources now go to player inventory
 
 ### 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)

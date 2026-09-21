@@ -11,9 +11,9 @@ public static class Repair
     {
         return piece.m_name switch
         {
-            "Karve" => (ShipwrightPlugin._karveMaterial.Value, ShipwrightPlugin._karveMaterialAmount.Value),
-            "VikingShip" => (ShipwrightPlugin._longshipMaterial.Value, ShipwrightPlugin._longshipMaterialAmount.Value),
-            "$piece_boat_drakkar" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
+            "$ship_karve" => (ShipwrightPlugin._karveMaterial.Value, ShipwrightPlugin._karveMaterialAmount.Value),
+            "$ship_longship" => (ShipwrightPlugin._longshipMaterial.Value, ShipwrightPlugin._longshipMaterialAmount.Value),
+            "$ship_longship_ashlands" => (ShipwrightPlugin._drakkarMaterial.Value, ShipwrightPlugin._drakkarMaterialAmount.Value),
             _ => (ShipwrightPlugin._defaultMaterial.Value, ShipwrightPlugin._defaultMaterialAmount.Value),
         };
     }
@@ -40,7 +40,7 @@ public static class Repair
                 player.Message(MessageHud.MessageType.Center, "$msg_missinghoverpiece");
                 return false;
             }
-            if (hoveringPiece.m_name == "Raft") return false;
+            if (hoveringPiece.m_name == "$ship_raft") return false;
             if (!hoveringPiece.TryGetComponent(out WearNTear component)) return false;
             var currentHealth = component.m_nview.GetZDO().GetFloat(ZDOVars.s_health, component.m_health);
 
@@ -70,7 +70,7 @@ public static class Repair
             }
             else
             {
-                component.Destroy();
+                DeconstructShip(hoveringPiece, component, player);
             }
 
             UseTool(hoveringPiece, player, toolItem);
@@ -141,6 +141,28 @@ public static class Repair
         GameObject material = ZNetScene.instance.GetPrefab(materialName);
         var mat = !material ? ZNetScene.instance.GetPrefab("Wood") : material;
         return mat.GetComponent<ItemDrop>();
+    }
+
+    private static void DeconstructShip(Piece piece, WearNTear component, Player player)
+    {
+        float returnAmount = ShipwrightPlugin._deconstructReturnAmount.Value;
+
+        if (returnAmount > 0f && piece.m_resources != null)
+        {
+            foreach (var req in piece.m_resources)
+            {
+                if (req?.m_resItem == null) continue;
+                int baseAmount = req.m_amount;
+                int dropAmount = Mathf.CeilToInt(baseAmount * returnAmount);
+                if (dropAmount > 0)
+                {
+                    var prefab = req.m_resItem.gameObject;
+                    player.GetInventory().AddItem(prefab, dropAmount);
+                }
+            }
+        }
+
+        component.Destroy();
     }
 
     private static void UseTool(Piece hoveringPiece, Player player, ItemDrop.ItemData toolItem)

@@ -5,6 +5,8 @@
 - Added per-ship material requirements: Karve uses Wood, Longship uses Fine Wood, Drakkar uses Yggdrasil Wood
 - Raft can no longer be repaired or deconstructed
 - Added Default Material / Default Material Amount for unknown/modded ship types
+- Added Deconstruct Return Amount config (0-100% slider, default 100%)
+- Deconstructed ship resources now go to player inventory
 
 ## 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)
