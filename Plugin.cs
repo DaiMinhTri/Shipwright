@@ -32,12 +32,12 @@ namespace Shipwright
         private static ConfigEntry<Toggle> _serverConfigLocked = null!;
         public static ConfigEntry<string> _defaultMaterial = null!;
         public static ConfigEntry<int> _defaultMaterialAmount = null!;
-        public static ConfigEntry<float> _repairAmount = null!;
-        public static ConfigEntry<float> _staminaCost = null!;
-        public static ConfigEntry<float> _repairDuration = null!;
+        public static ConfigEntry<int> _repairAmount = null!;
+        public static ConfigEntry<int> _staminaCost = null!;
+        public static ConfigEntry<int> _repairDuration = null!;
         public static ConfigEntry<Toggle> _usePlaceEffects = null!;
         public static ConfigEntry<Toggle> _canDeconstruct = null!;
-        public static ConfigEntry<float> _deconstructDuration = null!;
+        public static ConfigEntry<int> _deconstructDuration = null!;
         public static ConfigEntry<Toggle> _useDurability = null!;
         public static ConfigEntry<int> _deconstructReturnAmount = null!;
 
@@ -63,12 +63,12 @@ namespace Shipwright
 
             _defaultMaterial = config("2 - Settings", "Default Material", "Wood", "Fallback material for unknown/modded ship types");
             _defaultMaterialAmount = config("2 - Settings", "Default Material Amount", 1, new ConfigDescription("Fallback material amount for unknown/modded ship types", new AcceptableValueRange<int>(0, 999)));
-            _repairAmount = config("2 - Settings", "Repair Amount", 0.1f, new ConfigDescription("Set the health percentage amount for each repair", new AcceptableValueRange<float>(0f, 1f)));
-            _staminaCost = config("2 - Settings", "Stamina Cost", 5f, new ConfigDescription("Set the amount of stamina needed to repair once", new AcceptableValueRange<float>(0f, 50f)));
-            _repairDuration = config("2 - Settings", "Repair Duration", 1f, new ConfigDescription("Set the duration to load repair hammer, in seconds, multiplied by the quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
+            _repairAmount = config("2 - Settings", "Repair Amount", 10, new ConfigDescription("Set the health percentage amount for each repair (0-100)", new AcceptableValueRange<int>(0, 100)));
+            _staminaCost = config("2 - Settings", "Stamina Cost", 5, new ConfigDescription("Set the amount of stamina needed to repair once", new AcceptableValueRange<int>(0, 50)));
+            _repairDuration = config("2 - Settings", "Repair Duration", 1, new ConfigDescription("Set the duration to load repair hammer, in seconds, multiplied by the quality of the tool", new AcceptableValueRange<int>(1, 100)));
             _usePlaceEffects = config("2 - Settings", "Repair Effects", Toggle.On, "If on, upon repair, effects are triggered");
             _canDeconstruct = config("2 - Settings", "Can Deconstruct", Toggle.On, "If on, using secondary attack, player can deconstruct");
-            _deconstructDuration = config("2 - Settings", "Deconstruct Duration", 10f, new ConfigDescription("Set the duration to deconstruct, in seconds, multiplied by quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
+            _deconstructDuration = config("2 - Settings", "Deconstruct Duration", 10, new ConfigDescription("Set the duration to deconstruct, in seconds, multiplied by quality of the tool", new AcceptableValueRange<int>(1, 100)));
             _useDurability = config("2 - Settings", "Use Durability", Toggle.On, "If on, each use of tool uses durability");
             _deconstructReturnAmount = config("2 - Settings", "Deconstruct Return Amount", 100, new ConfigDescription("Percentage of resources returned when deconstructing a ship (0 = none, 100 = full refund)", new AcceptableValueRange<int>(0, 100)));
 

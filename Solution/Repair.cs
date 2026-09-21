@@ -67,7 +67,7 @@ public static class Repair
             if (!secondaryAttack)
             {
                 if (!UseMaterial(player, hoveringPiece)) return false;
-                var repairAmount = component.m_health * ShipwrightPlugin._repairAmount.Value;
+                var repairAmount = component.m_health * ShipwrightPlugin._repairAmount.Value / 100f;
                 var newHealth = Mathf.Clamp(currentHealth + repairAmount, 1f, component.m_health);
                 RepairAmount(component, newHealth);
                 player.Message(MessageHud.MessageType.TopLeft, Localization.instance.Localize("$msg_shiphealth: " + $" {(int)newHealth}/{(int)component.m_health}"));

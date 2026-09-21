@@ -26,21 +26,21 @@ Configuration is locked by default and synced from the server using embedded Ser
 
 ## Configuration
 
-A configuration file is generated at `BepInEx/config/DaiMinhTri.Shipwright.cfg` after the first launch.
+A configuration file is generated at `BepInEx/config/DMT.Shipwright.cfg` after the first launch.
 
 | Section | Setting | Default | Description |
 |---------|---------|---------|-------------|
 | General | Lock Configuration | On | Lock config to server admins only |
 | Settings | Default Material | Wood | Fallback material for unknown/modded ship types |
 | Settings | Default Material Amount | 1 | Fallback material amount for unknown/modded ship types |
-| Settings | Repair Amount | 0.1 | Health percentage per repair |
+| Settings | Repair Amount | 10 | Health percentage per repair (0-100) |
 | Settings | Stamina Cost | 5 | Stamina needed per repair |
 | Settings | Repair Duration | 1 | Duration in seconds, multiplied by tool quality |
 | Settings | Repair Effects | On | Trigger effects on repair |
-| Settings | Can Deconstruct | Off | Allow deconstructing with secondary attack |
+| Settings | Can Deconstruct | On | Allow deconstructing with secondary attack |
 | Settings | Deconstruct Duration | 10 | Duration in seconds, multiplied by tool quality |
 | Settings | Use Durability | On | Tool uses durability per use |
-| Settings | Deconstruct Return Amount | 1 | Percentage of resources returned when deconstructing (0-1) |
+| Settings | Deconstruct Return Amount | 100 | Percentage of resources returned when deconstructing (0-100, default 100%) |
 | Karve | Material | Wood | Material required to repair Karve |
 | Karve | Material Amount | 1 | Material amount needed to repair Karve |
 | Longship | Material | FineWood | Material required to repair Longship |
@@ -79,6 +79,9 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 - Added Default Material / Default Material Amount for unknown/modded ship types
 - Added Deconstruct Return Amount config (0-100% slider, default 100%)
 - Deconstructed ship resources now go to player inventory
+- New config file name
+- All slider configs changed to integer values
+- Can Deconstruct default changed to On
 
 ### 1.1.1
 - Updated ServerSync to latest version (compression, fragmentation, BufferingSocket)
