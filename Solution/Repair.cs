@@ -28,6 +28,7 @@ public static class Repair
             ItemDrop.ItemData? toolItem = player.m_rightItem;
             if (toolItem == null) return true;
             m_isSecondary = secondaryAttack;
+            ShipwrightPlugin.ShipwrightLogger.LogInfo($"Shipwright: secondary={secondaryAttack}, tool={toolItem?.m_shared?.m_name}, isCorrect={toolItem?.m_shared?.m_name == "$item_hammerbucket"}");
             if (!IsCorrectTool(toolItem))
             {
                 ResetDrawTime(toolItem);
@@ -41,8 +42,10 @@ public static class Repair
                 player.Message(MessageHud.MessageType.Center, "$msg_missinghoverpiece");
                 return false;
             }
+            ShipwrightPlugin.ShipwrightLogger.LogInfo($"Shipwright: hovering={hoveringPiece.name}, m_name={hoveringPiece.m_name}");
             if (hoveringPiece.m_name == "$ship_raft") return false;
             if (!hoveringPiece.TryGetComponent(out WearNTear component)) return false;
+            ShipwrightPlugin.ShipwrightLogger.LogInfo($"Shipwright: hasWearNTear={component != null}");
             var currentHealth = component.m_nview.GetZDO().GetFloat(ZDOVars.s_health, component.m_health);
 
             if (!secondaryAttack)
