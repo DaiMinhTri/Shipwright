@@ -1,4 +1,5 @@
-﻿using HarmonyLib;
+﻿using System;
+using HarmonyLib;
 using UnityEngine;
 
 namespace Shipwright.Solution;
@@ -145,20 +146,27 @@ public static class Repair
 
     private static void DeconstructShip(Piece piece, WearNTear component, Player player)
     {
-        float returnAmount = ShipwrightPlugin._deconstructReturnAmount.Value;
+        float returnAmount = ShipwrightPlugin._deconstructReturnAmount.Value / 100f;
 
         if (returnAmount > 0f && piece.m_resources != null)
         {
-            foreach (var req in piece.m_resources)
+            try
             {
-                if (req?.m_resItem == null) continue;
-                int baseAmount = req.m_amount;
-                int dropAmount = Mathf.CeilToInt(baseAmount * returnAmount);
-                if (dropAmount > 0)
+                foreach (var req in piece.m_resources)
                 {
-                    var prefab = req.m_resItem.gameObject;
-                    player.GetInventory().AddItem(prefab, dropAmount);
+                    if (req?.m_resItem == null) continue;
+                    int baseAmount = req.m_amount;
+                    int dropAmount = Mathf.CeilToInt(baseAmount * returnAmount);
+                    if (dropAmount > 0)
+                    {
+                        var prefab = req.m_resItem.gameObject;
+                        player.GetInventory().AddItem(prefab, dropAmount);
+                    }
                 }
+            }
+            catch (Exception e)
+            {
+                ShipwrightPlugin.ShipwrightLogger.LogWarning($"Failed to add deconstructed resources: {e.Message}");
             }
         }
 

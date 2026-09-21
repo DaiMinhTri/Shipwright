@@ -67,7 +67,7 @@ namespace Shipwright
             _staminaCost = config("2 - Settings", "Stamina Cost", 5f, new ConfigDescription("Set the amount of stamina needed to repair once", new AcceptableValueRange<float>(0f, 50f)));
             _repairDuration = config("2 - Settings", "Repair Duration", 1f, new ConfigDescription("Set the duration to load repair hammer, in seconds, multiplied by the quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
             _usePlaceEffects = config("2 - Settings", "Repair Effects", Toggle.On, "If on, upon repair, effects are triggered");
-            _canDeconstruct = config("2 - Settings", "Can Deconstruct", Toggle.Off, "If on, using secondary attack, player can deconstruct");
+            _canDeconstruct = config("2 - Settings", "Can Deconstruct", Toggle.On, "If on, using secondary attack, player can deconstruct");
             _deconstructDuration = config("2 - Settings", "Deconstruct Duration", 10f, new ConfigDescription("Set the duration to deconstruct, in seconds, multiplied by quality of the tool", new AcceptableValueRange<float>(1f, 101f)));
             _useDurability = config("2 - Settings", "Use Durability", Toggle.On, "If on, each use of tool uses durability");
             _deconstructReturnAmount = config("2 - Settings", "Deconstruct Return Amount", 100, new ConfigDescription("Percentage of resources returned when deconstructing a ship (0 = none, 100 = full refund)", new AcceptableValueRange<int>(0, 100)));
