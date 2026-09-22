@@ -151,25 +151,12 @@ public static class Repair
     {
         float returnAmount = ShipwrightPlugin._deconstructReturnAmount.Value / 100f;
 
-        if (returnAmount > 0f && piece.m_resources != null)
+        if (returnAmount < 1f && piece.m_resources != null)
         {
-            try
+            foreach (var req in piece.m_resources)
             {
-                foreach (var req in piece.m_resources)
-                {
-                    if (req?.m_resItem == null) continue;
-                    int baseAmount = req.m_amount;
-                    int dropAmount = Mathf.CeilToInt(baseAmount * returnAmount);
-                    if (dropAmount > 0)
-                    {
-                        var prefab = req.m_resItem.gameObject;
-                        player.GetInventory().AddItem(prefab, dropAmount);
-                    }
-                }
-            }
-            catch (Exception e)
-            {
-                ShipwrightPlugin.ShipwrightLogger.LogWarning($"Failed to add deconstructed resources: {e.Message}");
+                if (req == null) continue;
+                req.m_amount = Mathf.CeilToInt(req.m_amount * returnAmount);
             }
         }
 
