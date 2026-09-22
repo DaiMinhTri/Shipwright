@@ -19,7 +19,7 @@ namespace Shipwright
     public class ShipwrightPlugin : BaseUnityPlugin
     {
         internal const string ModName = "Shipwright";
-        internal const string ModVersion = "1.1.2";
+        internal const string ModVersion = "1.1.3";
         internal const string Author = "DMT";
         private const string ModGUID = Author + "." + ModName;
         private static readonly string ConfigFileName = ModGUID + ".cfg";

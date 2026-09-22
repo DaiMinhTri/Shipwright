@@ -73,6 +73,9 @@ If you enjoy this mod, consider buying me a coffee: [![Buy Me A Coffee](https://
 
 ## Changelog
 
+### 1.1.3
+- Fixed resource duplication on deconstruction
+
 ### 1.1.2
 - Added per-ship material requirements: Karve uses Wood, Longship uses Fine Wood, Drakkar uses Yggdrasil Wood
 - Raft can no longer be repaired or deconstructed
